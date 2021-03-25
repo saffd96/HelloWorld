@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HelloWorld : MonoBehaviour
 {
+    public Text label;
+
     [Range(1,500)]
     public int min = 1;
 
@@ -37,6 +40,6 @@ public class HelloWorld : MonoBehaviour
     void UpdateGuess()
     {
         guess = (min + max) / 2;
-        print($"Твое число равно {guess}?");
+        label.text = $"Твое число равно {guess}?";
     }
 }

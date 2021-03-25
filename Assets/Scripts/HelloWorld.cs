@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class HelloWorld : MonoBehaviour
 {
     public Text label;
+    private int count = 0;
 
     [Range(1,500)]
     public int min = 1;
@@ -15,7 +16,7 @@ public class HelloWorld : MonoBehaviour
     private int guess;
     void Start()
     {
-        print($"Загадай число от {min} до {max}");
+        label.text = $"Загадай число от {min} до {max}";
         UpdateGuess();
     }
     void Update()
@@ -34,12 +35,21 @@ public class HelloWorld : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))
         {
-            print("Game Over");
+            label.text = $"Game Over!\nКоличество затраченых попыток - {count}";
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            min = 1;
+            max = 1000;
+            label.text = $"Настройки сброшены до настроек по-умолчанию. \nЗагадай число от {min} до {max}";
+
+            Invoke("UpdateGuess", 2f);
         }
     }
     void UpdateGuess()
     {
         guess = (min + max) / 2;
         label.text = $"Твое число равно {guess}?";
+        count++;
     }
 }

@@ -8,12 +8,14 @@ public class HelloWorld : MonoBehaviour
     public Text label;
     private int count = 0;
 
-    [Range(1,500)]
-    public int min = 1;
+    [Range(1,500)][SerializeField]
+    private int min = 1;
 
-    [Range(501, 1000)]
-    public int max = 1000;
+    [Range(501, 1000)][SerializeField]
+    private int max = 1000;
+
     private int guess;
+
     void Start()
     {
         label.text = $"Загадай число от {min} до {max}";
@@ -26,16 +28,15 @@ public class HelloWorld : MonoBehaviour
             min = guess;
             UpdateGuess();
         }
-
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             max = guess;
             UpdateGuess();
         }
-
         if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))
         {
             label.text = $"Game Over!\nКоличество затраченых попыток - {count}";
+            enabled = false;
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {

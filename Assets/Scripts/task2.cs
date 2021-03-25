@@ -8,12 +8,12 @@ public class task2 : MonoBehaviour
     public Text start;
 
     private int sum = 0;
-    private int counts = 0;
+    private int count = 0;
     [Range(25, 50)] [SerializeField]
     private int maxSum = 50;
     void Start()
     {
-        start.text = $"Нажмите цифру.";
+        start.text = $"Нажми цифру:";
     }
     void Update()
     {
@@ -67,19 +67,27 @@ public class task2 : MonoBehaviour
             sum += 9;
             UpdateSum();
         }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            sum = 0;
+            Default();
             start.text = $"Настройки сброшены до настроек по-умолчанию.\nТекущая сумма 0\nНажми цифру:";
         }
         if (sum >= maxSum)
         {
-            start.text = $"Поздравляю. Игра окончена.\nВы потратили {counts} попыток";
+            start.text = $"Поздравляю. Игра окончена.\nВы потратили {count} попыток";
+            Invoke("Start", 2f);
+            Default();
         }
     }
     void UpdateSum()
     {
         start.text = $"Сумма: {sum}";
-        counts++;
+        count++;
+    }
+    void Default()
+    {
+        count = 0;
+        sum = 0;
     }
 }

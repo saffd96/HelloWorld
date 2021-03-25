@@ -36,12 +36,12 @@ public class HelloWorld : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetKeyDown(KeyCode.Return))
         {
             label.text = $"Game Over!\nКоличество затраченых попыток - {count}";
-            enabled = false;
+            Default();
+            Invoke("Start", 2f);
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            min = 1;
-            max = 1000;
+            Default();
             label.text = $"Настройки сброшены до настроек по-умолчанию. \nЗагадай число от {min} до {max}";
 
             Invoke("UpdateGuess", 2f);
@@ -52,5 +52,11 @@ public class HelloWorld : MonoBehaviour
         guess = (min + max) / 2;
         label.text = $"Твое число равно {guess}?";
         count++;
+    }
+    void Default()
+    {
+        min = 1;
+        max = 1000;
+        count = 0;
     }
 }

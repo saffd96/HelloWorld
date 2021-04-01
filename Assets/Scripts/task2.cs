@@ -18,6 +18,10 @@ public class task2 : MonoBehaviour
     }
     void Update()
     {
+        GetKey();
+    }
+    void GetKey()
+    {
         if (Input.GetKeyDown(KeyCode.Keypad0) || Input.GetKeyDown(KeyCode.Alpha0))
         {
             sum += 0;
@@ -68,7 +72,6 @@ public class task2 : MonoBehaviour
             sum += 9;
             UpdateSum();
         }
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Default();

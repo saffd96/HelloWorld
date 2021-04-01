@@ -8,10 +8,12 @@ public class HelloWorld : MonoBehaviour
     public Text label;
     private int count = 0;
 
-    [Range(1,500)][SerializeField]
+    [Range(1, 500)]
+    [SerializeField]
     private int min = 1;
 
-    [Range(501, 1000)][SerializeField]
+    [Range(501, 1000)]
+    [SerializeField]
     private int max = 1000;
 
     private int guess;

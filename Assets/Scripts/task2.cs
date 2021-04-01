@@ -19,6 +19,12 @@ public class task2 : MonoBehaviour
     void Update()
     {
         GetKey();
+        if (sum >= maxSum)
+        {
+            start.text = $"Поздравляю. Игра окончена.\nВы потратили {count} попыток";
+            Invoke("Start", 2f);
+            Default();
+        }
     }
     void GetKey()
     {
@@ -77,12 +83,7 @@ public class task2 : MonoBehaviour
             Default();
             start.text = $"Настройки сброшены до настроек по-умолчанию.\nТекущая сумма 0\nНажми цифру:";
         }
-        if (sum >= maxSum)
-        {
-            start.text = $"Поздравляю. Игра окончена.\nВы потратили {count} попыток";
-            Invoke("Start", 2f);
-            Default();
-        }
+        
     }
     void UpdateSum()
     {

@@ -9,20 +9,17 @@ public class HelloWorld : MonoBehaviour
     private int count = 0;
 
     [Range(1,500)][SerializeField]
-    static private int min = 1;
-    private int defMin = min;
+    private int min = 1;
 
     [Range(501, 1000)][SerializeField]
-    static private int max = 1000;
-    private int defMax = max;
-
+    private int max = 1000;
 
     private int guess;
 
     void Start()
     {
         label.text = $"Загадай число от {min} до {max}";
-        InitGuess();
+        UpdateGuess();
     }
     void Update()
     {
@@ -46,23 +43,20 @@ public class HelloWorld : MonoBehaviour
         {
             Default();
             label.text = $"Настройки сброшены до настроек по-умолчанию. \nЗагадай число от {min} до {max}";
+
             Invoke("UpdateGuess", 2f);
         }
     }
-    void InitGuess()
+    void UpdateGuess()
     {
         guess = (min + max) / 2;
         label.text = $"Твое число равно {guess}?";
-    }
-    void UpdateGuess()
-    {
-        InitGuess();
         count++;
     }
     void Default()
     {
-        min = defMin;
-        max = defMax;
+        min = 1;
+        max = 1000;
         count = 0;
     }
 }

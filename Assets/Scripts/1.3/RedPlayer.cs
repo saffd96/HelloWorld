@@ -32,7 +32,7 @@ public class RedPlayer : MonoBehaviour
 
     private string redPlayerTempName;
 
-    public int redPlayerCurrentHp;
+    public int greenPlayerCurrentHp;
     public int redPlayerCurrentAttack;
     public int redPlayerCurrentDefence;
 
@@ -51,10 +51,11 @@ public class RedPlayer : MonoBehaviour
     private void Start()
     {
         redPlayerCurrentName = redPlayerTempName;
-        redPlayerCurrentHp = redPlayerTempHp;
+        greenPlayerCurrentHp = redPlayerTempHp;
         redPlayerCurrentAttack = redPlayerTempAttack;
         redPlayerCurrentDefence = redPlayerTempDefence;
         debugText.text = null;
+        redPlayerDeadText.text = null;
         redPlayerIsDead = false;
     }
 
@@ -71,22 +72,22 @@ public class RedPlayer : MonoBehaviour
             damageValue -= redPlayerCurrentDefence - pierce;
             if (damageValue > 0)
             {
-                redPlayerCurrentHp -= damageValue;
-                print($"{redEnemy.name} ударил {redPlayerName} и нанес {damageValue} урона." +
-                    $"\nУ {redEnemy.name} осталось {redEnemy.redEnemyCurrentHp}" +
-                    $"\nУ {redPlayerCurrentName} осталось {redPlayerCurrentHp}");
+                greenPlayerCurrentHp -= damageValue;
+                print($"{redEnemy.name} ударил {redPlayerName} и нанес {damageValue} урона. " +
+                    $"У {redEnemy.name} осталось {redEnemy.greenEnemyCurrentHp}. " +
+                    $"У {redPlayerCurrentName} осталось {greenPlayerCurrentHp}");
                 debugText.text = $"{redEnemy.name} ударил {redPlayerCurrentName} и нанес {damageValue} урона." +
-                    $"\nУ {redEnemy.name} осталось {redEnemy.redEnemyCurrentHp}" +
-                    $"\nУ {redPlayerCurrentName} осталось {redPlayerCurrentHp}";
+                    $"\nУ {redEnemy.name} осталось {redEnemy.greenEnemyCurrentHp}" +
+                    $"\nУ {redPlayerCurrentName} осталось {greenPlayerCurrentHp}";
             }
             else
             {
-                print($"{redEnemy.name} ударил {redPlayerCurrentName} и не нанес урона." +
-                    $"\nУ {redEnemy.name} осталось {redEnemy.redEnemyCurrentHp}" +
-                    $"\nУ {redPlayerCurrentName} осталось {redPlayerCurrentHp}");
+                print($"{redEnemy.name} ударил {redPlayerCurrentName} и не нанес урона. " +
+                    $"У {redEnemy.name} осталось {redEnemy.greenEnemyCurrentHp}. " +
+                    $"У {redPlayerCurrentName} осталось {greenPlayerCurrentHp}");
                 debugText.text = $"{redEnemy.name} ударил {redPlayerCurrentName} и не нанес урона." +
-                    $"\nУ {redEnemy.name} осталось {redEnemy.redEnemyCurrentHp}" +
-                    $"\nУ {redPlayerCurrentName} осталось {redPlayerCurrentHp}";
+                    $"\nУ {redEnemy.name} осталось {redEnemy.greenEnemyCurrentHp}" +
+                    $"\nУ {redPlayerCurrentName} осталось {greenPlayerCurrentHp}";
             }
         }
     }
@@ -94,10 +95,10 @@ public class RedPlayer : MonoBehaviour
     public void UpdateInfo()
     {
         redPlayerNameText.text = redPlayerCurrentName;
-        redPlayerHpText.text = redPlayerCurrentHp.ToString();
-        if (redPlayerCurrentHp <= 0)
+        redPlayerHpText.text = greenPlayerCurrentHp.ToString();
+        if (greenPlayerCurrentHp <= 0)
         {
-            redPlayerCurrentHp = 0;
+            greenPlayerCurrentHp = 0;
             print("I'm dead");
             redPlayerDeadText.text = "I'm dead!";
             redPlayerIsDead = true;

@@ -4,38 +4,7 @@ using UnityEngine;
 
 public class GreenEnemy : MonoBehaviour
 {
-    [SerializeField]
-    private int numberOfEnemies;
-    [SerializeField]
-    private GreenEnemy greenEnemy;
-
-    [SerializeField]
-    private TextMesh greenEnemyNameText;
-    [SerializeField]
-    private TextMesh greenEnemyHpText;
-    [SerializeField]
-    private TextMesh greenEnemyDeadText;
-    [SerializeField]
-    private TextMesh debugText;
-
-    [SerializeField]
-    private GreenPlayer greenPlayer;
-
-    [SerializeField]
-    private string greenEnemyName;
-
-    [SerializeField]
-    private int greenEnemyAttack;
-    [SerializeField]
-    private int greenEnemyHp;
-    [SerializeField]
-    private int greenEnemyPierce;
-
-    private int greenEnemyTempHp;
-    private int greenEnemyTempAttack;
-    private int greenEnemyTempPierce;
-
-    private string greenEnemyTempName;
+    public GreenPlayer greenPlayer;
 
     public int greenEnemyCurrentHp;
     public int greenEnemyCurrentAttack;
@@ -43,41 +12,17 @@ public class GreenEnemy : MonoBehaviour
 
     public string greenEnemyCurrentName;
 
-    private bool greenEnemyIsDead;
+    public bool greenEnemyIsDead;
 
-    private void Awake()
-    {
-        GreenEnemy[] enemies = new GreenEnemy[numberOfEnemies];
-
-        print(enemies.Length);
-
-        for (int i = 0; i < numberOfEnemies; i++)
-        {
-            Instantiate(greenEnemy);
-            print(i);
-        }
-
-        greenEnemyTempHp = greenEnemyHp;
-        greenEnemyTempAttack = greenEnemyAttack;
-        greenEnemyTempPierce = greenEnemyPierce;
-        greenEnemyTempName = greenEnemyName;
-    }
-
-    private void Start()
-    {
-        greenEnemyCurrentHp = greenEnemyTempHp;
-        greenEnemyCurrentAttack = greenEnemyTempAttack;
-        greenEnemyCurrentPierce = greenEnemyTempPierce;
-        greenEnemyCurrentName = greenEnemyTempName;
-        debugText.text = null;
-        greenEnemyDeadText.text = null;
-        greenEnemyIsDead = false;
-    }
+    [SerializeField]
+    private TextMesh debugText;
+    private TextMesh greenEnemyNameText;
+    private TextMesh greenEnemyHpText;
+    private TextMesh greenEnemyDeadText;
 
     private void Update()
     {
         UpdateInfo();
-        CheckKey();
     }
 
     public void GetDamage(int damageValue)
@@ -116,18 +61,6 @@ public class GreenEnemy : MonoBehaviour
             print("I'm dead");
             greenEnemyDeadText.text = "I'm dead!";
             greenEnemyIsDead = true;
-        }
-    }
-
-    public void CheckKey()
-    {
-        if (Input.GetKeyDown(KeyCode.L) && greenEnemyIsDead == false)
-        {
-            greenPlayer.GetDamage(greenEnemyCurrentAttack, greenEnemyCurrentPierce);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Start();
         }
     }
 }

@@ -14,9 +14,6 @@ public class GreenPlayer : MonoBehaviour
     private TextMesh debugText;
 
     [SerializeField]
-    private GreenEnemy greenEnemy;
-
-    [SerializeField]
     private string greenPlayerName;
 
     [SerializeField]
@@ -25,6 +22,10 @@ public class GreenPlayer : MonoBehaviour
     private int greenPlayerHp;
     [SerializeField]
     private int greenPlayerDefence;
+    [SerializeField]
+    private int healAmount;
+
+    public GreenEnemy greenEnemy;
 
     private int greenPlayerTempHp;
     private int greenPlayerTempAttack;
@@ -115,5 +116,10 @@ public class GreenPlayer : MonoBehaviour
         {
             Start();
         }
+    }
+
+    public void Heal()
+    {
+        greenPlayerCurrentHp += healAmount;
     }
 }
